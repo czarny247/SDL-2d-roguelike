@@ -1,5 +1,3 @@
-//#include <iostream>
-
 #include "SDL.h"
 
 int main()
@@ -20,8 +18,6 @@ int main()
   	SDL_RenderClear(renderer);
   	SDL_RenderPresent(renderer);
 
-	//SDL_Delay(3000);
-
 	bool quit = false;                                      
 	SDL_Event e;                                            
 	while (!quit) {                                         
@@ -34,6 +30,5 @@ int main()
 
 	SDL_DestroyWindow(window);
   	SDL_Quit();
-	//std::cout << "hello from main" << std::endl;
 	return 0;
 }
