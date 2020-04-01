@@ -10,6 +10,10 @@ include_directories(${SDL2_INCLUDE_DIRS})
 set(SRC_LIST
 	src/game/GameLoop.cpp
 	src/game/GameLoop.hpp
+	src/utils/WindowRaiiWrapper.cpp
+	src/utils/WindowRaiiWrapper.hpp
+	src/utils/RendererRaiiWrapper.cpp
+	src/utils/RendererRaiiWrapper.hpp
 )
 
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
