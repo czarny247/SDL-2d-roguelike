@@ -1,5 +1,5 @@
 #include "SDL.h"
-
+#include "game/GameLoop.hpp"
 int main()
 {	
   	SDL_Init(SDL_INIT_VIDEO);
@@ -18,15 +18,8 @@ int main()
   	SDL_RenderClear(renderer);
   	SDL_RenderPresent(renderer);
 
-	bool quit = false;                                      
-	SDL_Event e;                                            
-	while (!quit) {                                         
-	    while (SDL_PollEvent(&e)) {                         
-	        if (e.type == SDL_QUIT) {                       
-	            quit = true;                                
-	        }                                               
-	    }                                                   
-	}
+  	game::GameLoop mainLoop;
+  	mainLoop.run();
 
 	SDL_DestroyWindow(window);
   	SDL_Quit();
