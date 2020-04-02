@@ -11,8 +11,8 @@ namespace graphics
 class TextureManager
 {
 public:
-	TextureManager() = delete;
-	TextureManager()
+    TextureManager(const TextureManager&) = delete;
+	TextureManager& operator=(const TextureManager&) = delete;
 
     static TextureManager* instance();
 
@@ -26,7 +26,8 @@ public:
 
 private:
 	std::map<std::string, SDL_Texture*> textureMap_;
-	static std::unique_ptr<TextureManager> instance_;
+	static TextureManager* instance_;
+	TextureManager() = default;
 	~TextureManager() = default;
 };
 
