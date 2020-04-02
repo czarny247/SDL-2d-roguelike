@@ -13,3 +13,6 @@ _deps
 
 #build directory
 build/
+
+#resource directory
+res/

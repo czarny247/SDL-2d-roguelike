@@ -39,4 +39,10 @@ void RendererRaiiWrapper::present()
 	SDL_RenderPresent(renderer_.get());
 }
 
+int RendererRaiiWrapper::copyTexture(SDL_Texture* texture,
+	const SDL_Rect* source, const SDL_Rect* destination)
+{
+	return SDL_RenderCopy(renderer_.get(), texture, source, destination);
+}
+
 }
