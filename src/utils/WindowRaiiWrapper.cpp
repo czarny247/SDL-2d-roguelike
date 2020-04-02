@@ -16,6 +16,21 @@ WindowRaiiWrapper::WindowRaiiWrapper(const char* windowTitle, int xPos, int yPos
 	window = nullptr;
 }
 
+WindowRaiiWrapper::WindowRaiiWrapper(WindowRaiiWrapper&& other)
+{
+	*this = std::move(other);
+}
+
+WindowRaiiWrapper& WindowRaiiWrapper::operator=(WindowRaiiWrapper&& other)
+{
+	if(window_ != nullptr)
+	{
+		window_.reset(nullptr);
+	}
+	window_ = std::move(other.window_);
+	return *this;
+}
+
 SDL_Window* WindowRaiiWrapper::get()
 {
 	return window_.get();

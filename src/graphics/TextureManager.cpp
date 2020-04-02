@@ -3,13 +3,15 @@
 namespace graphics
 {
 
-static TextureManager* TextureManager::instance()
+TextureManager* TextureManager::instance_ = nullptr;
+
+TextureManager* TextureManager::instance()
 {
     if(instance_ == nullptr)
     {
-        instance_ = std::make_unique<TextureManager>();
+        instance_ = new TextureManager();
     }
-    return instance_.get();
+    return instance_;
 }
 
 bool TextureManager::load(const std::string& fileName, const std::string& id, SDL_Renderer* renderer)
