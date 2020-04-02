@@ -25,6 +25,8 @@ public:
 	void clear();
 	void present();
 
+	int copyTexture(SDL_Texture* texture, const SDL_Rect* source, const SDL_Rect* destination);
+
 private:
 	RendererPtr renderer_;
 };
