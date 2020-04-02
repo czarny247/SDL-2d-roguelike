@@ -17,7 +17,7 @@ int main()
 	renderer.clear();
 	renderer.present();
 
-	game::GameLoop mainLoop(window.get(), renderer.get());
+	game::GameLoop mainLoop(std::move(window), std::move(renderer));
 	mainLoop.run();
 
 	SDL_Quit();

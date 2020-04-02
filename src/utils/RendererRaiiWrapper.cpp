@@ -19,6 +19,21 @@ RendererRaiiWrapper::RendererRaiiWrapper(SDL_Window* window, int rendererIndex, 
 	renderer = nullptr;
 }
 
+RendererRaiiWrapper::RendererRaiiWrapper(RendererRaiiWrapper&& other)
+{
+	*this = std::move(other);	
+}
+
+RendererRaiiWrapper& RendererRaiiWrapper::operator=(RendererRaiiWrapper&& other)
+{
+	if(renderer_ != nullptr)
+	{
+		renderer_.reset(nullptr);
+	}
+	renderer_ = std::move(other.renderer_);
+	return *this;
+}
+
 SDL_Renderer* RendererRaiiWrapper::get()
 {
 	return renderer_.get();

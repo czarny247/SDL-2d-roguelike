@@ -17,6 +17,11 @@ public:
 		std::unique_ptr<SDL_Renderer, std::function<void(SDL_Renderer*)>>;
 
 	RendererRaiiWrapper(SDL_Window* window, int rendererIndex, uint32_t rendererFlags);
+
+	RendererRaiiWrapper(RendererRaiiWrapper&& other);
+
+	RendererRaiiWrapper& operator=(RendererRaiiWrapper&& other);
+
 	~RendererRaiiWrapper() = default;
 
 	SDL_Renderer* get();

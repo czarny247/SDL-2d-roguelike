@@ -8,17 +8,15 @@ namespace
 namespace game
 {
 
-GameLoop::GameLoop(SDL_Window* window, SDL_Renderer* renderer)
-: window_(window)
-, renderer_(renderer)
+GameLoop::GameLoop(utils::WindowRaiiWrapper&& window, utils::RendererRaiiWrapper&& renderer)
+: window_(std::move(window))
+, renderer_(std::move(renderer))
 {
-	textureManager_.load("../res/rogue.png", "rogue", renderer);
+	graphics::TextureManager::instance()->load("../res/rogue.png", "rogue", renderer_.get());
 }
 
 GameLoop::~GameLoop()
 {
-	window_ = nullptr;
-	renderer_ = nullptr;
 }
 
 void GameLoop::run()
@@ -58,11 +56,11 @@ void GameLoop::processInput(bool& isQuitEvent)
 
 void GameLoop::render(double movementSpeedFactor)
 {
-	SDL_RenderClear(renderer_);
-	textureManager_.draw("rogue", 0,0, 128, 82, renderer_);
-	textureManager_.drawFrame("rogue", 
-		100*movementSpeedFactor, 100*movementSpeedFactor, 128, 82, 1, currentFrame_, renderer_);
-    SDL_RenderPresent(renderer_);
+	SDL_RenderClear(renderer_.get());
+	graphics::TextureManager::instance()->draw("rogue", 0,0, 128, 82, renderer_.get());
+	graphics::TextureManager::instance()->drawFrame("rogue", 
+		100*movementSpeedFactor, 100*movementSpeedFactor, 128, 82, 1, currentFrame_, renderer_.get());
+    SDL_RenderPresent(renderer_.get());
 }
 
 void GameLoop::update()

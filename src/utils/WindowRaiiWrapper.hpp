@@ -19,6 +19,10 @@ public:
 	WindowRaiiWrapper(const char* windowTitle, int xPos, int yPos,
 		int width, int height, uint32_t flags);
 
+	WindowRaiiWrapper(WindowRaiiWrapper&& other);
+
+	WindowRaiiWrapper& operator=(WindowRaiiWrapper&& other);
+
 	~WindowRaiiWrapper() = default;
 
 	//todo apply rule of 5
